@@ -1,16 +1,14 @@
 python-ucdev
 ============
 
-Python library to access Cypress CY7C65211 USB-Serial bridge (USB to GPIO/SPI/I2C) chip.
-Also includes library to access various I2C/SPI chips. Currently includes driver for
+Python library to access the GPIO pins of the Cypress CY7C65213 USB-Serial bridge.
 
-- Nordic nRF24L01 wireless tranceiver (SPI)
-- InvenSense MPU-6050 3-axis accelerometer + 3-axis gyroscope (I2C)
-- Honeywell HMC5883L 3-axis magnetometer (I2C)
+A cut-down version of python-ucdev by Taisuke Yamada. Thank you Tai.
+(Use Tai's original version if you need I2C or SPI functionality.)
 
-## Usage (CY7C65211)
+## Usage (CY7C65213)
 
-    >>> from cy7c65211 import CyUSBSerial, CyGPIO, CySPI
+    >>> from cy7c65213 import CyUSBSerial, CyGPIO
     >>> 
     >>> # load DLL provided by Cypress
     >>> dll = "c:/path/to/Cypress-USB-Serial/library/lib/cyusbserial.dll"
@@ -28,27 +26,8 @@ Also includes library to access various I2C/SPI chips. Currently includes driver
     >>> pin = gpio.pin(3)
     >>> pin.set(1)
     >>> ret = pin.get()
-    >>>
-    >>> # access SPI
-    >>> spi = CySPI(dev)
-    >>> ret = spi.send("any-data-to-be-clocked-out")
-
-## Usage (nRF24L01)
-
-    >>> from nrf24 import *
-    >>> 
-    >>> tx = nRF24(CySPI(dev), CE=CyGPIO(dev).pin(0))
-    >>> tx.reset(MODE_SB|DIR_SEND)
-    >>> tx.TX_ADDR = tx.RX_ADDR_P0 = 0xB3B4B5B6C2
-    >>> tx.send("some-payload-len-of-max-32-bytes")
-    >>>
-    >>> print tx.FIFO_STATUS.TX_EMPTY
-    >>> print tx.CONFIG
 
 ## Note
 This requires cyusbserial.dll (or libcyusbserial.so) library
 provided by Cypress.
 
-Current development focuses on GPIO and SPI features to
-use Nordic nRF24 wireless tranceiver chip. See sample script
-nrf24-test.py for the detail.
