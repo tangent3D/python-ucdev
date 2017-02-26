@@ -45,7 +45,8 @@ class CyUSBSerial(object):
         for devno in range(0, nr[0]):
             rc = api.CyGetDeviceInfo(devno, info)
 
-            if os == 'Windows' and info.deviceBlock != api.SerialBlock_SCB0:
+            # Under Windows, check we are talking to the ManuFacturinG interface 
+            if os == 'Windows' and info.deviceBlock != api.SerialBlock_MFG:
                 continue
 
             found = True
@@ -59,7 +60,7 @@ class CyUSBSerial(object):
                 found = (vid, pid) in ((iv, ip), (iv, None), (None, ip))
 
             if found:
-                yield CyUSBSerialDevice(self, devno, 0)
+                yield CyUSBSerialDevice(self, devno, 0) # set ifnum to zero for Windows
 
 ######################################################################
 

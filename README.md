@@ -1,7 +1,7 @@
 python-ucdev
 ============
 
-Python library to access the GPIO pins of the Cypress CY7C65213 USB-Serial bridge.
+Python library to access the GPIO pins of the Cypress CY7C65213 USB-Serial bridge in UART mode.
 
 A cut-down version of python-ucdev by Taisuke Yamada. Thank you Tai.
 (Use Tai's original version if you need I2C or SPI functionality.)
