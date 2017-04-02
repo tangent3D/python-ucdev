@@ -20,7 +20,7 @@ import serial
 # Windows COM port name (from Device Manager)
 com_port = 'COM1'
 # Linux tty name (e.g. Raspberry Pi)
-#com_port = '/dev/ttyAMC0"
+#com_port = '/dev/ttyACM0'
 
 # Point to the DLL provided by Cypress
 # Windows
