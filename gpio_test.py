@@ -1,18 +1,24 @@
 # Test the Cypress CY7C65213 GPIO Pins
 
-# Before you run this test, use the Cypress USB-Serial Configuration Utility to:
-#  Set UART Notification LED settings to "None" (which allows GPIO_0 and _1 to be
-#   used as outputs instead of driving the Tx and Rx LEDs)
-#  Configure GPIO_0 and GPIO_1 as "Drive 0" (i.e. low output as default)
+# Before you run this test, use the Cypress USB-Serial Configuration Utility (under Windows) to:
+#  Set UART RX Notification LED to "None"
+#  Set UART TX Notification LED to "None"
+#  Set UART RX or TX Notification LED to "GPIO_0"
+#  Configure GPIO_1 as "Drive 0" (i.e. low output as default)
 #  Configure GPIO_2 as "Input" (instead of "Tristate")
 
-# Connect GPIO_0 to GPIO_2 using a jumper wire
+# Connect GPIO_1 to GPIO_2 using a jumper wire
 
 from cy7c65213 import CyUSBSerial, CyGPIO
 import time
 
-# Load DLL provided by Cypress
+# Point to the DLL provided by Cypress
+# Windows
 dll = "C:\\Program Files (x86)\\Cypress\\USB-Serial SDK\\library\\cyusbserial\\x64\\cyusbserial.dll"
+# Linux (e.g. Raspberry Pi)
+#dll = "/usr/local/lib/libcyusbserial.so"
+
+# Load the DLL
 lib = CyUSBSerial(lib = dll)
 
 #dev = lib.find().next() # Use first device found
@@ -21,7 +27,7 @@ dev = lib.find(vid=0x04B4,pid=0x0003).next() # Look for a specific vendor and pr
 # Access GPIO
 gpio = CyGPIO(dev)
 
-out_pin = gpio.pin(0) # GPIO Pin 0
+out_pin = gpio.pin(1) # GPIO Pin 1
 in_pin = gpio.pin(2) # GPIO Pin 2
 
 try:

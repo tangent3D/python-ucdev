@@ -60,7 +60,10 @@ class CyUSBSerial(object):
                 found = (vid, pid) in ((iv, ip), (iv, None), (None, ip))
 
             if found:
-                yield CyUSBSerialDevice(self, devno, 0) # set ifnum to zero for Windows
+                if os == 'Windows':
+                    yield CyUSBSerialDevice(self, devno, 0) # set ifnum to 0 for Windows
+                else:
+                    yield CyUSBSerialDevice(self, devno, 2) # set ifnum to 2 for Linux etc.
 
 ######################################################################
 

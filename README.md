@@ -6,6 +6,11 @@ Python library to access the GPIO pins of the Cypress CY7C65213 USB-Serial bridg
 A cut-down version of python-ucdev by Taisuke Yamada. Thank you Tai.
 (Use Tai's original version if you need I2C or SPI functionality.)
 
+If you want to use this code to interface to the CY7C65213 under Linux - e.g. on Raspberry Pi -
+then take a look at:
+
+https://github.com/PaulZC/python-ucdev/blob/master/Interfacing_CY7C65213_to_Raspberry_Pi.pdf
+
 ## Usage (CY7C65213)
 
     >>> from cy7c65213 import CyUSBSerial, CyGPIO
@@ -28,6 +33,5 @@ A cut-down version of python-ucdev by Taisuke Yamada. Thank you Tai.
     >>> ret = pin.get()
 
 ## Note
-This requires cyusbserial.dll (or libcyusbserial.so) library
-provided by Cypress.
+This requires cyusbserial.dll (or libcyusbserial.so) library provided by Cypress.
 
