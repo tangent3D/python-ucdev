@@ -35,3 +35,7 @@ https://github.com/PaulZC/python-ucdev/blob/master/Interfacing_CY7C65213_to_Rasp
 ## Note
 This requires cyusbserial.dll (or libcyusbserial.so) library provided by Cypress.
 
+## Known Bugs
+The pyserial_and_gpio_test.py example works fine under Windows, but under Linux
+ser.getCTS always seems to return True.
+
