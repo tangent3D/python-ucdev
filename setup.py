@@ -1,8 +1,13 @@
-from setuptools import setup 
-setup(name='ucdev',
+from setuptools import setup, find_packages
+
+setup(
+      name='ucdev',
       version='0.0.1',
-      description='Library to access the GPIO pins of the Cypress CY7C65213 in UART mode',
-      author='PaulZC',
-      author_email='pc235603.remove-if-not-spam@gmail.com',
-      license='Python',
-      packages=['cy7c65213'])
+      packages=find_packages(),
+      install_requires=[
+            "cffi",
+      ],
+      entry_points={
+            "console_scripts": ["gpio3=gpio3.cmd:main"],
+    },
+)

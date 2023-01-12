@@ -2,10 +2,10 @@
 
 import sys, os
 import platform
-from cffi import FFI
+from cffi import *
 
-import header
-from common import *
+from . import header
+from .common import GPIO
 
 class CyUSBSerial(object):
     __self = None
@@ -45,7 +45,7 @@ class CyUSBSerial(object):
         for devno in range(0, nr[0]):
             rc = api.CyGetDeviceInfo(devno, info)
 
-            # Under Windows, check we are talking to the ManuFacturinG interface 
+            # Under Windows, check we are talking to the ManuFacturinG interface
             if os == 'Windows' and info.deviceBlock != api.SerialBlock_MFG:
                 continue
 
@@ -173,6 +173,6 @@ class CyGPIO(GPIO):
 ######################################################################
 
 __all__ = []
-for k,v in locals().items():
+for k,v in locals().copy().items():
     if hasattr(v, '__module__') and v.__module__ == __name__:
         __all__.append(k)
