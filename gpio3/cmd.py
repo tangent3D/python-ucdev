@@ -20,7 +20,7 @@ def main(argv=None):
     try:
         dev = next(lib.find(vid = 0x04B4,pid = 0x0003))
     except:
-        print('Could not find USB-Seral device.')
+        print('Could not detect USB-Seral device.')
         exit()
 
     gpio = CyGPIO(dev)
