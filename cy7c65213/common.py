@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 class GPIO(object):
     def pin(self, nr):
         return GPIOPin(self, nr)
