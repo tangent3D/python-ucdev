@@ -24,7 +24,6 @@ def main(argv=None):
         exit()
 
     gpio = CyGPIO(dev)
-    print('gpio: ', gpio)
 
     # Set GPIO3 high
     try:
