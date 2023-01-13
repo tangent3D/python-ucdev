@@ -30,7 +30,7 @@ def main(argv=None):
 
     # Set GPIO3 high
     try:
-        gpio.pin(3).set(1)
+        gpio.set(3, 1)
     except:
         print('Could not set GPIO value.')
         exit()
