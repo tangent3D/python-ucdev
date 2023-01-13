@@ -10,15 +10,27 @@ def main(argv=None):
         dll = "/usr/local/lib/libcyusbserial.so"
 
     # Load the DLL
-    lib = CyUSBSerial(lib=dll)
+    try:
+        lib = CyUSBSerial(lib=dll)
+        print('lib: ', lib)
+    except:
+        print('Could not load USB-Serial library.')
 
     # Look for a specific vendor and product id
-    dev = next(lib.find(vid = 0x04B4,pid = 0x0003))
+    try:
+        dev = next(lib.find(vid = 0x04B4,pid = 0x0003))
+        print('dev: ', dev)
+    except:
+        print('Could not find USB-Seral device.')
 
     gpio = CyGPIO(dev)
+    print('gpio: ', gpio)
 
     # Set GPIO3 high
-    gpio.pin(3).set(1)
+    try:
+        gpio.pin(3).set(1)
+    except:
+        print('Could not set GPIO value.')
 
 if __name__ == "__main__":
     main()
