@@ -12,7 +12,6 @@ def main(argv=None):
     # Load the DLL
     try:
         lib = CyUSBSerial(lib=dll)
-        print('lib: ', lib)
     except:
         print('Could not load USB-Serial library.')
         exit()
@@ -20,7 +19,6 @@ def main(argv=None):
     # Look for a specific vendor and product id
     try:
         dev = next(lib.find(vid = 0x04B4,pid = 0x0003))
-        print('dev: ', dev)
     except:
         print('Could not find USB-Seral device.')
         exit()
