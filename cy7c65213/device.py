@@ -13,7 +13,7 @@ class CyUSBSerial(object):
                 ffi = FFI()
             obj = super(CyUSBSerial, cls).__new__(cls)
             obj.ffi = ffi
-            obj.ffi.cdef(header.src)
+            obj.ffi.cdef(cdef_src)
             obj.api = ffi.dlopen(lib if lib else "cyusbserial")
 
             # initialize if API exists
