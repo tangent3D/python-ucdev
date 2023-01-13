@@ -1,8 +1,7 @@
 import sys, os
 import platform
-from cffi import *
-
-from . import header
+from cffi import FFI
+from .header import src as cdef_src
 from .common import GPIO
 
 class CyUSBSerial(object):
@@ -43,12 +42,11 @@ class CyUSBSerial(object):
         for devno in range(0, nr[0]):
             rc = api.CyGetDeviceInfo(devno, info)
 
-            # Under Windows, check we are talking to the ManuFacturinG interface
             if os == 'Windows' and info.deviceBlock != api.SerialBlock_MFG:
                 continue
 
             found = True
-
+            
             if finder:
                 found = finder(info)
             elif vid or pid:
@@ -58,10 +56,7 @@ class CyUSBSerial(object):
                 found = (vid, pid) in ((iv, ip), (iv, None), (None, ip))
 
             if found:
-                if os == 'Windows':
-                    yield CyUSBSerialDevice(self, devno, 0) # set ifnum to 0 for Windows
-                else:
-                    yield CyUSBSerialDevice(self, devno, 2) # set ifnum to 2 for Linux etc.
+                yield CyUSBSerialDevice(self, devno, 0)
 
 ######################################################################
 
