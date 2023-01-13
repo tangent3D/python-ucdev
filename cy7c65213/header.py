@@ -15,7 +15,7 @@ if platform.system() == 'Linux':
 # Common headers
 ######################################################################
 
-src = """
+src += """
 #define CY_STRING_DESCRIPTOR_SIZE 256
 #define CY_MAX_DEVICE_INTERFACE 5
 #define CY_US_VERSION_MAJOR 1
