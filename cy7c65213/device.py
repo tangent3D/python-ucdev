@@ -58,7 +58,10 @@ class CyUSBSerial(object):
                 found = (vid, pid) in ((iv, ip), (iv, None), (None, ip))
 
             if found:
-                yield CyUSBSerialDevice(self, devno, 0)
+                if os == 'Windows':
+                    yield CyUSBSerialDevice(self, devno, 0) # set ifnum to 0 for Windows
+                else:
+                    yield CyUSBSerialDevice(self, devno, 2) # set ifnum to 2 for Linux etc.
 
 ######################################################################
 
@@ -167,5 +170,7 @@ class CyGPIO(GPIO):
 
 ######################################################################
 
-# export symbols
-__all__ = [i for i in list(locals()) if i.startswith("Cy")]
+__all__ = []
+for k,v in locals().copy().items():
+    if hasattr(v, '__module__') and v.__module__ == __name__:
+        __all__.append(k)
