@@ -5,6 +5,7 @@ import argparse
 import platform
 import sys
 import time
+from os import path
 
 def set(pin, state):
     try:
@@ -33,11 +34,15 @@ def main(argv=None):
     if (platform.system() == "Linux"):
         dll = "/usr/local/lib/libcyusbserial.so"
 
-    # Load the DLL
-    try:
-        lib = CyUSBSerial(lib=dll)
-    except:
-        print('Could not load USB-Serial library.')
+    if path.exists(dll):
+        # Load the DLL
+        try:
+            lib = CyUSBSerial(lib=dll)
+        except Exception:
+            print('Could not load USB-Serial library.')
+            exit()
+    else:
+        print('USB-Serial library not found.')
         exit()
 
     # Look for a specific vendor and product id
