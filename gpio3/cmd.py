@@ -30,10 +30,9 @@ def main(argv=None):
 
     # Point to the DLL provided by Cypress
     if (platform.system() == "Windows"):
-        dll = "__file__\\..\\cypress\\win64\\cyusbserial.dll"
-        print(dll)
+        dll = "C:\\Program Files (x86)\\Cypress\\USB-Serial SDK\\library\\cyusbserial\\x64\\cyusbserial.dll"
     if (platform.system() == "Linux"):
-        dll = "__file__/../cypress/linux/libcyusbserial.so"
+        dll = "/usr/local/lib/libcyusbserial.so"
 
     if path.exists(dll):
         # Load the DLL
