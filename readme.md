@@ -1,6 +1,3 @@
-### Installation
-Requires installation of Cypress library files. See instructions [here](/cypress/).
-
 ### Usage
 Control Cypress USB-Serial GPIO3 state for active low POWER# on and off.
 
