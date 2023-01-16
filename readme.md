@@ -1,6 +1,7 @@
 ### Installation
 Linux: Copy [90-cyusb.rules](cypress/linux/90-cyusb.rules) to `/etc/udev/
 rules.d` and reboot to reload udev rules.
+
 No special installation steps are required for Windows.
 
 ### Usage
