@@ -63,6 +63,8 @@ def main(argv=None):
         set(3, 1)
         time.sleep(0.1)
         set(3, 0)
+        # Allow supervisory circuit time to release #RESET
+        time.sleep(0.2)
 
 if __name__ == "__main__":
     main()
